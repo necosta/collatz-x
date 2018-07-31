@@ -10,7 +10,7 @@ test:
 
 build:
 	mkdir -p bin
-	$(CRYSTAL) build src/main.cr -o bin/main
+	$(CRYSTAL) build src/entrypoint/main.cr -o bin/main
 
 clean:
 	rm -rf bin
