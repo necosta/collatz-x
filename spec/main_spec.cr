@@ -7,6 +7,6 @@ describe Math do
 
     eqSolver.calcEq(-1.0, 1, 2).should eq(4.0)
 
-    eqSolver.getSum(1, 1, 0, 0).should eq(-1.0)
+    eqSolver.calcMemberEq(1, 1, 0, 0).should eq(-1.0)
   end
 end
