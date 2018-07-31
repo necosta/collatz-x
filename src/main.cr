@@ -14,8 +14,8 @@ module Math
     puts "Output: #{output}"
   end
 
-  def run
-    input = Math.genInput(1000)
+  def run(maxCycles)
+    input = Math.genComplexInput(maxCycles)
     input.each do |i|
       out = parseInt(Math.iter(i))
       if (out > 0)

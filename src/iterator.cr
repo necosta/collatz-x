@@ -2,13 +2,17 @@ require "./lib.cr"
 
 module Math
   def calc(x, y, z, w)
-    a = Math.getA(x, 1)
-    b = Math.getB(z, 1)
-    c = Math.getC(w, 1)
-    d = Math.getD(y, w, 1)
     e = Math.getSum(x)
     f = Math.getSum(y)
-    member = Math.calcMemberEq(a, b, c, d)
+
+    member = 0.0
+    (1..x.size).each do |it|
+      a = Math.getA(x, it)
+      b = Math.getB(z, it)
+      c = Math.getC(x, it)
+      d = Math.getD(y, w, it)
+      member = member + Math.calcMemberEq(a, b, c, d)
+    end
     Math.calcEq(member, e, f)
   end
 
@@ -32,7 +36,6 @@ module Math
     flows = Array(Array(Array(Int32))).new
     flows << [[1, 2, 1, 0]]
     flows << [[1, 4, 1, 0]]
-    # flows << [[1, 2, 1, 0], [1, 4, 1, 0]]
     (0..maxCycles).each do |x|
       flows << [[x, x + 6, x, x + 1]]
       flows << [[x + 1, x + 6, x, x + 1]]
@@ -41,7 +44,18 @@ module Math
       flows << [[x + 1, x + 3, x + 1, x + 2]]
       flows << [[x + 2, x + 3, x + 1, x + 2]]
     end
-    puts "Size: #{flows.size}"
     flows
+  end
+
+  def genComplexInput(maxCycles)
+    flows = genInput(maxCycles)
+    out = Array(Array(Int32)).new
+    flows.each_permutation(2) { |p|
+      arr = Array(Array(Int32)).new
+      arr << p[0][0]
+      arr << p[1][0]
+      flows << arr
+    }
+    flows.uniq
   end
 end

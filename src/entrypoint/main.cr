@@ -1,4 +1,4 @@
 require "../main"
 
 # Math.runWithValues
-Math.run
+Math.run(100)
