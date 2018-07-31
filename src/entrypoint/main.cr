@@ -1,4 +1,11 @@
 require "../main"
 
 # Math.runWithValues
-Math.run(100)
+
+maxCycles = 4
+maxPermutations = 4
+(0..maxCycles).each do |c|
+  (0..maxPermutations).each do |p|
+    Math.run(c, p)
+  end
+end

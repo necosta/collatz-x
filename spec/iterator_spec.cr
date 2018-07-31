@@ -28,10 +28,10 @@ describe Math do
   end
 
   it "should calculate complex transform input" do
-    Math.genComplexInput(-1).should eq ([[[1, 2, 1, 0]], [[1, 4, 1, 0]], [[1, 2, 1, 0], [1, 4, 1, 0]], [[1, 4, 1, 0], [1, 2, 1, 0]]])
-    Math.genComplexInput(-1)[2].size.should eq(2)
-    Math.genComplexInput(-1).size.should eq(4)
-    Math.genComplexInput(0).size.should eq(64)
-    Math.genComplexInput(1).size.should eq(196)
+    Math.genComplexInput(-1, 2).should eq ([[[1, 2, 1, 0]], [[1, 4, 1, 0]], [[1, 2, 1, 0], [1, 4, 1, 0]], [[1, 4, 1, 0], [1, 2, 1, 0]]])
+    Math.genComplexInput(-1, 2)[2].size.should eq(2)
+    Math.genComplexInput(-1, 2).size.should eq(4)
+    Math.genComplexInput(0, 2).size.should eq(64)
+    Math.genComplexInput(1, 2).size.should eq(196)
   end
 end
