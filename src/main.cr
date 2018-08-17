@@ -5,9 +5,11 @@ module Math
   def run(maxCycles, permutations)
     input = Math.genComplexInput(maxCycles, permutations)
     input.each do |i|
+      # puts "Input: #{i}"
       out = parseInt(Math.iter(i))
       if (out > 0)
-        puts "Input: #{i} => Output: #{out}"
+        puts "Input: #{i}"
+        puts "Output: #{out}"
       end
     end
   end

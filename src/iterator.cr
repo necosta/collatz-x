@@ -1,4 +1,5 @@
 require "./lib.cr"
+require "./factorization.cr"
 
 module Math
   def calc(x, y, z, w)
@@ -13,6 +14,10 @@ module Math
       d = Math.getD(y, w, it)
       member = member + Math.calcMemberEq(a, b, c, d)
     end
+    # Exploratory
+    # num = Math.factorize((1.0 * 2**f * member).abs)
+    # dem = Math.factorize((3**e - 2**f).abs)
+    # puts "Num: #{num} || Dem: #{dem}"
     Math.calcEq(member, e, f)
   end
 

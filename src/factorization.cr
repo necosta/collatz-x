@@ -13,8 +13,10 @@ module Math
   def factorize(n)
     factors = Array(Int32).new
     computePrimes(n).each do |i|
-      if (n % i == 0)
+      n1 = n
+      while (n1 % i == 0)
         factors << i
+        n1 = n1 / i
       end
     end
     return factors
