@@ -2,6 +2,9 @@ CRYSTAL=crystal
 
 all: format test build run
 
+clean:
+	rm -rf bin
+
 format:
 	$(CRYSTAL) tool format
 
@@ -11,9 +14,6 @@ test:
 build:
 	mkdir -p bin
 	$(CRYSTAL) build src/entrypoint/main.cr -o bin/main
-
-clean:
-	rm -rf bin
 
 run:
 	bin/main
