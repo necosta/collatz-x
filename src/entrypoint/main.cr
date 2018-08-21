@@ -7,10 +7,12 @@ enum Option
 end
 
 out = Option::Collatz
+value = 1
 
 OptionParser.parse! do |parser|
   parser.banner = "Usage:"
   parser.on("-o option", "--option option", "Selects a run option") { |option| out = Option.parse(option) }
+  parser.on("-v value", "--value value", "Sets a starting value") { |v| value = v.to_i }
   parser.on("-h", "--help", "Shows this help") { puts parser }
   parser.invalid_option do |flag|
     STDERR.puts "ERROR: #{flag} is not a valid option."
@@ -20,13 +22,20 @@ OptionParser.parse! do |parser|
 end
 
 if (out == Option::Collatz)
-  puts "Running collatz function"
-  # ToDo...
+  puts "Running collatz"
+  output = value
+  while output = Math.runCollatz(output)
+    # Only display on 4sum even number
+    if (Math.sumDigits(output) == 4 && output % 2 == 0)
+      puts output
+    end
+    break if output == 1
+  end
 else
   puts "Running analysis"
-  maxCycles = 1
-  maxPermutations = 2
-  (1..maxPermutations).each do |p|
-    Math.run(maxCycles, p)
+  cycles = 1
+  permutations = 2
+  Math.runAnalysis(cycles, permutations).each do |i|
+    puts i
   end
 end

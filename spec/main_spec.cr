@@ -10,8 +10,15 @@ describe Math do
   end
 
   it "should parse float to int" do
-    Math.parseInt(3.4).should eq(-1)
-    Math.parseInt(5.0).should eq(5)
-    Math.parseInt(5.0001).should eq(-1)
+    Math.isWholeNumber?(3.4).should be_false
+    Math.isWholeNumber?(5.0).should be_true
+    Math.isWholeNumber?(5.0001).should be_false
+    Math.isWholeNumber?(10).should be_true
+  end
+
+  it "should parse float to int" do
+    Math.sumDigits(111).should eq(3)
+    Math.sumDigits(777).should eq(3)
+    Math.sumDigits(999999999999).should eq(9)
   end
 end

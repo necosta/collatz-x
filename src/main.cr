@@ -2,20 +2,43 @@ require "./lib.cr"
 require "./iterator.cr"
 
 module Math
-  def run(maxCycles, permutations)
-    input = Math.genComplexInput(maxCycles, permutations)
-    input.each do |i|
-      # puts "Input: #{i}"
-      out = parseInt(Math.iter(i))
-      if (out > 0)
-        puts "Input: #{i}"
-        puts "Output: #{out}"
-      end
+  def runCollatz(input)
+    if (input % 2 == 0)
+      input / 2
+    else
+      input * 3 + 1
     end
   end
 
-  def parseInt(input)
-    # ToDo: Improve this logic
-    input.to_i === input ? input.to_i : -1
+  def runAnalysis(maxCycles, permutations)
+    input = Math.genComplexInput(maxCycles, permutations)
+    out = Array(Tuple(Array(Array(Int32)), Int32)).new
+    input.each do |i|
+      temp = Math.iter(i)
+      if (isWholeNumber?(temp) && temp > 0)
+        out << {i, temp.to_i}
+      end
+    end
+    out
+  end
+
+  def isWholeNumber?(input)
+    input.to_i === input
+  end
+
+  def sumDigitsInternal(input)
+    out = 0
+    input.to_s.each_char do |c|
+      out = out + c.to_i
+    end
+    out
+  end
+
+  def sumDigits(input)
+    output = input
+    while output = sumDigitsInternal(output)
+      break if output < 10
+    end
+    output
   end
 end
