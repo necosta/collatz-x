@@ -1,7 +1,7 @@
 require "../main"
 
-maxCycles = 2
-maxPermutations = 1
+maxCycles = 1
+maxPermutations = 2
 (1..maxPermutations).each do |p|
   Math.run(maxCycles, p)
 end
