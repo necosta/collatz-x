@@ -1,4 +1,5 @@
 require "option_parser"
+require "../collatz"
 require "../main"
 
 enum Option
@@ -22,14 +23,10 @@ OptionParser.parse! do |parser|
 end
 
 if (out == Option::Collatz)
-  puts "Running collatz"
-  output = value
-  while output = Math.runCollatz(output)
-    # Only display on 4sum even number
-    if (Math.sumDigits(output) == 4 && output % 2 == 0)
-      puts output
-    end
-    break if output == 1
+  puts "Running collatz for value #{value}"
+  sysout = Collatz.runWithPrint(value)
+  sysout.each do |o|
+    puts o
   end
 else
   puts "Running analysis"

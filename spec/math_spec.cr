@@ -1,5 +1,5 @@
 require "spec"
-require "../src/main"
+require "../src/math"
 
 describe Math do
   it "should identify whole numbers" do
@@ -13,5 +13,6 @@ describe Math do
     Math.sumDigits(111).should eq(3)
     Math.sumDigits(777).should eq(3)
     Math.sumDigits(999999999999).should eq(9)
+    Math.sumDigits(123456789555).should eq(6)
   end
 end

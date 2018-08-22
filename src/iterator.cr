@@ -1,24 +1,21 @@
-require "./lib"
+require "./analysis"
 require "./factorization"
 
 module Math
   def calc(x, y, z, w)
-    e = Math.getSum(x)
-    f = Math.getSum(y)
-
     member = 0.0
     (1..x.size).each do |it|
-      a = Math.getA(x, it)
-      b = Math.getB(z, it)
-      c = Math.getC(x, it)
-      d = Math.getD(y, w, it)
-      member = member + Math.calcMemberEq(a, b, c, d)
+      a = Analysis.getA(x, it)
+      b = Analysis.getB(z, it)
+      c = Analysis.getC(x, it)
+      d = Analysis.getD(y, w, it)
+      member = member + Analysis.getSumMember(a, b, c, d)
     end
     # Exploratory
     # num = Math.factorize((1.0 * 2**f * member).abs)
     # dem = Math.factorize((3**e - 2**f).abs)
     # puts "Num: #{num} || Dem: #{dem}"
-    Math.calcEq(member, e, f)
+    Analysis.getFinal(member, x.sum, y.sum)
   end
 
   def iter(input : Array(Array(Int32)))
