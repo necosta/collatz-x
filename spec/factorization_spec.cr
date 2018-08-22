@@ -1,5 +1,5 @@
 require "spec"
-require "../src/factorization.cr"
+require "../src/factorization"
 
 describe Math do
   it "should identify primes" do

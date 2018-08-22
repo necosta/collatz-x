@@ -1,5 +1,5 @@
-require "./lib.cr"
-require "./factorization.cr"
+require "./lib"
+require "./factorization"
 
 module Math
   def calc(x, y, z, w)

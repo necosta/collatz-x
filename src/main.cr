@@ -1,5 +1,5 @@
-require "./lib.cr"
-require "./iterator.cr"
+require "./lib"
+require "./iterator"
 
 module Math
   def runCollatz(input)

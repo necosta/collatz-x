@@ -1,8 +1,15 @@
 require "spec"
-require "../src/lib.cr"
+require "../src/lib"
 
 describe Math do
-  it "should calculate correctly a function" do
+  it "should calculate final equations" do
+    Math.calcMemberEq(1, 1, 0, 0).should eq(-1.0)
+    Math.calcMemberEq(1, 4, 0, 0).should eq(13.0)
+    Math.calcEq(-1.0, 1, 2).should eq(4.0)
+    Math.calcEq(-1.0, 1, 4).should eq(16.0/13.0)
+  end
+
+  it "should calculate A function" do
     input = [4, 6, 7]
     Math.getA(input, 1).should eq(17)
     Math.getA(input, 2).should eq(13)
@@ -13,7 +20,7 @@ describe Math do
     Math.getA(input, 5).should eq(6)
   end
 
-  it "should calculate correctly b function" do
+  it "should calculate B function" do
     input = [4, 6, 7]
     Math.getB(input, 1).should eq(4)
     Math.getB(input, 2).should eq(6)
@@ -24,7 +31,7 @@ describe Math do
     Math.getB(input, 5).should eq(6)
   end
 
-  it "should calculate correctly c function" do
+  it "should calculate C function" do
     input = [4, 6, 7]
     Math.getC(input, 1).should eq(13)
     Math.getC(input, 2).should eq(7)
@@ -35,7 +42,7 @@ describe Math do
     Math.getC(input, 5).should eq(0)
   end
 
-  it "should calculate correctly d function" do
+  it "should calculate D function" do
     input1 = [3, 3]
     input2 = [2, 9]
     Math.getD(input1, input2, 1).should eq(5)
@@ -48,7 +55,7 @@ describe Math do
     Math.getD(input1, input2, 3).should eq(3)
   end
 
-  it "should calculate correctly sum function" do
+  it "should calculate Sum function" do
     input = [40, 6, 7]
     Math.getSum(input).should eq(53)
   end
