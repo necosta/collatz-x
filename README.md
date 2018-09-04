@@ -4,11 +4,9 @@ aiming to better understand the [Collatz conjecture](https://en.wikipedia.org/wi
 nuances and patterns
 
 ### The Collatz conjecture
-Start with any positive integer n
+Start with any positive integer n and recursively apply the following logic:
 * If the number is even, divide it by two (n / 2)
 * If the number is odd, triple it and add one (n * 3 + 1)
-
-Repeat the process by assigning this result to n
 
 The conjecture states that, no matter what selected value of n, the sequence will always reach 1
 
@@ -55,41 +53,45 @@ Let's organize all positive integers by:
 ---
 
 ##### Flow diagram
-* 9 (digitsSum) * 2 (parity states) = 18 states
-* 9 (digitsSum) * 3 (parity transitions) = 27 transitions
+* 9 (digitsSum) * 2 (parity states) = 18 nodes
+* 9 (digitsSum) * 3 (parity transitions) = 27 edges
 
-![Flow diagram](img/flow.jpg "Flow diagram")
+![Flow diagram](img/flow.jpeg "Flow diagram")
 
 **Singularities:**
 * (&#945;) M -> N -> M  (n / 2 * n / 2) (lim -> 6)
 * (&#945;) O -> O (n / 2) (lim -> 18)
 * (&#946;) K -> K (1.5 * n + 1) (lim -> &#8734;) !!!
 
+**&#945; flows:**
+
+* Any &#945; node will eventually reach 1<sub>EVEN</sub>
+
 **&#946; flows:**
 
 | Id    | Seq         | P(X) | Formula (K<sub>x</sub> -> x) |
 |:-----:|:-----------:|:----:|:------------:|
-|&#946;1|A->H         |1/4   | 3<sup>1</sup> / 2<sup>2</sup> * n + (3<sup>1</sup> - 2<sup>1</sup>) / 2<sup>0</sup> |
-|&#946;2|A->B->C->J   |1/16  | 3<sup>1</sup> / 2<sup>4</sup> * n + (3<sup>1</sup> - 2<sup>1</sup>) / 2<sup>0</sup> |
-|&#946;3|A->B->C->D->K<sub>x</sub>->E->F |1/32| 3<sup>x</sup> / 2<sup>x+6</sup> * n + (3<sup>x</sup> - 2<sup>x</sup>) / 2<sup>x+1</sup> |
-|&#946;4|A->B->C->D->K<sub>x</sub>->E->L |1/32| 3<sup>x+1</sup> / 2<sup>x+6</sup> * n + (3<sup>x+1</sup> - 2<sup>x</sup>) / 2<sup>x+1</sup> |
-|&#946;5|A->B->I->K<sub>x</sub>->E->F    |1/16| 3<sup>x+1</sup> / 2<sup>x+5</sup> * n + (3<sup>x+1</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
-|&#946;6|A->B->I->K<sub>x</sub>->E->L    |1/16| 3<sup>x+2</sup> / 2<sup>x+5</sup> * n + (3<sup>x+2</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
-|&#946;7|G->K<sub>x</sub>->E->F  |1/4   | 3<sup>x+1</sup> / 2<sup>x+3</sup> * n + (3<sup>x+1</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
-|&#946;8|G->K<sub>x</sub>->E->L  |1/4   | 3<sup>x+2</sup> / 2<sup>x+3</sup> * n + (3<sup>x+2</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
+|&#946;<sub>1</sub>|A->H         |1/4   | (3<sup>1</sup> / 2<sup>2</sup>) * n + (3<sup>1</sup> - 2<sup>1</sup>) / 2<sup>0</sup> |
+|&#946;<sub>2</sub>|A->B->C->J   |1/16  | (3<sup>1</sup> / 2<sup>4</sup>) * n + (3<sup>1</sup> - 2<sup>1</sup>) / 2<sup>0</sup> |
+|&#946;<sub>3</sub>|A->B->C->D->K<sub>x</sub>->E->F |1/32| (3<sup>x</sup> / 2<sup>x+6</sup>) * n + (3<sup>x</sup> - 2<sup>x</sup>) / 2<sup>x+1</sup> |
+|&#946;<sub>4</sub>|A->B->C->D->K<sub>x</sub>->E->L |1/32| (3<sup>x+1</sup> / 2<sup>x+6</sup>) * n + (3<sup>x+1</sup> - 2<sup>x</sup>) / 2<sup>x+1</sup> |
+|&#946;<sub>5</sub>|A->B->I->K<sub>x</sub>->E->F    |1/16| (3<sup>x+1</sup> / 2<sup>x+5</sup>) * n + (3<sup>x+1</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
+|&#946;<sub>6</sub>|A->B->I->K<sub>x</sub>->E->L    |1/16| (3<sup>x+2</sup> / 2<sup>x+5</sup>) * n + (3<sup>x+2</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
+|&#946;<sub>7</sub>|G->K<sub>x</sub>->E->F  |1/4   | (3<sup>x+1</sup> / 2<sup>x+3</sup>) * n + (3<sup>x+1</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
+|&#946;<sub>8</sub>|G->K<sub>x</sub>->E->L  |1/4   | (3<sup>x+2</sup> / 2<sup>x+3</sup>) * n + (3<sup>x+2</sup> - 2<sup>x+1</sup>) / 2<sup>x+2</sup> |
 
-** 1 iteration **
-## &#946; = 3<sup>x</sup> / 2<sup>y</sup> * n + (3<sup>x</sup> - 2<sup>z</sup>) / 2<sup>w</sup>
+**1 iteration (generalized):**
 
-** k iterations **
-## &#946; = 3<sup>&#931;x<sub>k</sub></sup> / 2<sup>&#931;y<sub>k</sub></sup> * n + &#931; ((3<sup>a</sup> - 2<sup>b</sup>*3<sup>c</sup>) / 2<sup>d</sup>)
+## &#946;<sup>1</sup> = (3<sup>x</sup> / 2<sup>y</sup>) * n + (3<sup>x</sup> - 2<sup>z</sup>) / 2<sup>w</sup>
+
+**k iterations (generalized):**
+
+## &#946;<sup>k</sup> = (3<sup>&#931;x<sub>k</sub></sup> / 2<sup>&#931;y<sub>k</sub></sup>) * n + &#931; ((3<sup>a</sup> - 2<sup>b</sup>*3<sup>c</sup>) / 2<sup>d</sup>)
+
 ---
-##### How to prove conjecture:
 
-### lim (3<sup>x</sup> / 2<sup>y</sup> * n + (3<sup>x</sup> - 2<sup>z</sup>) / 2<sup>w</sup>)
-tends to 0
+#### How to prove conjecture:
+ 
+1. lim &#946;<sup>1</sup> -> 0
 
-**and**
-
-### 3<sup>&#931;x<sub>k</sub></sup> / 2<sup>&#931;y<sub>k</sub></sup> * n + &#931; ((3<sup>a</sup> - 2<sup>b</sup>*3<sup>c</sup>) / 2<sup>d</sup>) = n
-has no solutions for any positive even integer n and **n &#8801; 4 (mod 18) **
+1. &#946;<sup>k</sup> = n has no solutions for any positive even integer n and n &#8801; 4 (mod 18)
