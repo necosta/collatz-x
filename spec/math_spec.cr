@@ -14,5 +14,6 @@ describe Math do
     Math.sumDigits(777).should eq(3)
     Math.sumDigits(999999999999).should eq(9)
     Math.sumDigits(123456789555).should eq(6)
+    Math.sumDigits(322878).should eq(3)
   end
 end

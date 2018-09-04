@@ -25,6 +25,16 @@ Alternatively you can execute each action individually:
 * Build - Compiles code: `make build`
 * Run - Runs code: `make run`
 
+**Execute:**
+
+`./bin/main -o RunOnce -v 300`
+
+`./bin/main -o RunUpwards -v 400`
+
+`./bin/main -o RunLoopAnalysis -v 400`
+
+`./bin/main --help `
+
 ### Line of thought
 
 Let's organize all positive integers by:
@@ -91,7 +101,7 @@ Let's organize all positive integers by:
 ---
 
 #### How to prove conjecture:
- 
+
 1. lim &#946;<sup>1</sup> -> 0
 
 1. &#946;<sup>k</sup> = n has no solutions for any positive even integer n and n &#8801; 4 (mod 18)

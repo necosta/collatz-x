@@ -17,8 +17,8 @@ module Collatz
     end
   end
 
-  def runWithPrint(n)
-    sysout = Array(Int32).new
+  def runWithPrint(n : UInt64)
+    sysout = Array(UInt64).new
     while n = Collatz.runOnce(n)
       # Only display on 4sum even number
       if (n % 2 == 0 && Math.sumDigits(n) == 4)
