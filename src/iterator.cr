@@ -35,30 +35,22 @@ module Math
   end
 
   def genInput(maxCycles)
-    flows = Array(Array(Array(Int32))).new
-    flows << [[1, 2, 1, 0]]
-    flows << [[1, 4, 1, 0]]
+    flows = Array(Array(Int32)).new
+    flows << [1, 2, 1, 0]
+    flows << [1, 4, 1, 0]
     (0..maxCycles).each do |x|
-      flows << [[x, x + 6, x, x + 1]]
-      flows << [[x + 1, x + 6, x, x + 1]]
-      flows << [[x + 1, x + 5, x + 1, x + 2]]
-      flows << [[x + 2, x + 5, x + 1, x + 2]]
-      flows << [[x + 1, x + 3, x + 1, x + 2]]
-      flows << [[x + 2, x + 3, x + 1, x + 2]]
+      flows << [x, x + 6, x, x + 1]
+      flows << [x + 1, x + 6, x, x + 1]
+      flows << [x + 1, x + 5, x + 1, x + 2]
+      flows << [x + 2, x + 5, x + 1, x + 2]
+      flows << [x + 1, x + 3, x + 1, x + 2]
+      flows << [x + 2, x + 3, x + 1, x + 2]
     end
     flows
   end
 
   def genComplexInput(maxCycles, permutations)
     flows = genInput(maxCycles)
-    out = Array(Array(Int32)).new
-    flows.each_permutation(permutations) { |p|
-      arr = Array(Array(Int32)).new
-      (0...permutations).each do |p1|
-        arr << p[p1][0]
-      end
-      flows << arr
-    }
-    flows.uniq
+    flows.permutations(permutations)
   end
 end

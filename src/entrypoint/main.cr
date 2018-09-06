@@ -1,6 +1,7 @@
 require "option_parser"
 require "../collatz"
-require "../main"
+require "../iterator"
+require "../math"
 
 enum Option
   RunOnce         # 0
@@ -13,8 +14,16 @@ value = 100
 
 OptionParser.parse! do |parser|
   parser.banner = "Usage:"
-  parser.on("-o option", "--option option", "Select a running option") { |opt| option = Option.parse(opt) }
-  parser.on("-v value", "--value value", "Set a starting value") { |v| value = v.to_i }
+  parser.on("-o option", "--option option", "Select a running option:
+      RunOnce - Apply algorithm to a single value
+      RunUpwards - Apply algorithm infinitely staring from an initial value
+      RunLoopAnalysis - Check for possible solutions for 'loop' equation
+    ") { |opt| option = Option.parse(opt) }
+  parser.on("-v value", "--value value", "Set a value:
+    RunOnce - Single value
+    RunUpwards - Starting iteration value
+    RunLoopAnalysis - Number of cycles
+    ") { |v| value = v.to_i }
   parser.on("-h", "--help", "Show this help") { puts parser }
   parser.invalid_option do |flag|
     STDERR.puts "ERROR: #{flag} is not a valid option"
@@ -41,11 +50,17 @@ when Option::RunUpwards
     value = value + 18
   end
 when Option::RunLoopAnalysis
-  cycles = value
-  # ToDo: Soft-code permutations value
-  permutations = 1
-  puts "Running loop analysis for #{cycles} cycle(s) and #{permutations} permutation(s)"
-  Math.runAnalysis(cycles, permutations).each do |i|
-    puts i
+  kcycles = value
+  # Will iterate through permutations but will never finish given the high number of permutations
+  permutations = 20
+  (1..permutations).each do |p|
+    puts "Running loop analysis for #{kcycles} kcycles(s) and #{p} permutation(s)"
+    Math.genComplexInput(kcycles, p).each do |i|
+      temp = Math.iter(i)
+      if (Math.isWholeNumber?(temp) && temp > 0)
+        puts i
+        puts temp
+      end
+    end
   end
 end
