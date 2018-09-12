@@ -5,6 +5,8 @@ module Limits
 
   def limit
     out = 3.0/2**4 + 3.0/2**8 + sum(0, 12) + sum(1, 10) + sum(1, 6)
+    # puts 3.0/2**4
+    # puts 3.0/2**8
     # puts "#{out}"
     out
   end
