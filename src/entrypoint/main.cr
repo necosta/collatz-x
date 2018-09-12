@@ -22,7 +22,7 @@ OptionParser.parse! do |parser|
   parser.on("-v value", "--value value", "Set a value:
     RunOnce - Single value
     RunUpwards - Starting iteration value
-    RunLoopAnalysis - Number of cycles
+    RunLoopAnalysis - Number of kcycles
     ") { |v| value = v.to_i }
   parser.on("-h", "--help", "Show this help") { puts parser }
   parser.invalid_option do |flag|

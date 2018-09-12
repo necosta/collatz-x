@@ -12,9 +12,13 @@ module Math
       member = member + Analysis.getSumMember(a, b, c, d)
     end
     # Exploratory
-    # num = Math.factorize((1.0 * 2**f * member).abs)
-    # dem = Math.factorize((3**e - 2**f).abs)
-    # puts "Num: #{num} || Dem: #{dem}"
+    # num = (1.0 * 2**y.sum * member)
+    # dem = (3**x.sum - 2**y.sum)
+    # numF = Math.factorize(num.abs)
+    # demF = Math.factorize(dem.abs)
+    # numSign = num > 0 ? "+" : "-"
+    # demSign = dem > 0 ? "+" : "-"
+    # puts "Num: #{numSign}#{numF} || Dem: #{demSign}#{demF}"
     Analysis.getFinal(member, x.sum, y.sum)
   end
 
