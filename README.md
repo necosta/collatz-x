@@ -33,6 +33,8 @@ Alternatively you can execute each action individually:
 
 `./bin/main -o RunLoopAnalysis -v 10`
 
+`./bin/main -o RunSpecial -v 50`
+
 `./bin/main --help `
 
 ### Line of thought
