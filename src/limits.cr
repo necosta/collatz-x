@@ -1,4 +1,4 @@
-require "big/big_int"
+require "big"
 
 module Limits
   extend self

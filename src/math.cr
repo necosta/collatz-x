@@ -1,6 +1,8 @@
 module Math
   def isWholeNumber?(n)
-    n.to_i === n
+    # puts n
+    # puts n.floor
+    (n - n.floor).abs < 1e-10
   end
 
   def sumDigits(n)
@@ -11,9 +13,9 @@ module Math
   end
 
   private def sumDigitsInt(n)
-    d = 0
+    d = BigInt.new(0)
     n.to_s.each_char do |c|
-      d = d + c.to_i
+      d = d + c.to_i8
     end
     d
   end

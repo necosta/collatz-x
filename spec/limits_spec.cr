@@ -1,4 +1,4 @@
-require "spec"
+require "./spec_helper"
 require "../src/limits"
 
 describe Limits do

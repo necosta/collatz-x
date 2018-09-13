@@ -4,10 +4,11 @@ module Collatz
   extend self
 
   def runOnce(n)
-    if (n % 2 == 0)
-      n / 2
+    out = BigInt.new(n)
+    if (out % 2 == 0)
+      out / 2
     else
-      n * 3 + 1
+      out * 3 + 1
     end
   end
 
@@ -18,11 +19,11 @@ module Collatz
   end
 
   def runWithPrint(n)
-    sysout = Array(UInt64).new
+    sysout = Array(BigInt).new
     while n = Collatz.runOnce(n)
       # Only display on 4sum even number
       if (n % 2 == 0 && Math.sumDigits(n) == 4)
-        sysout << n.to_u64
+        sysout << n
       end
       break if n == 1
     end
