@@ -4,7 +4,7 @@ require "../collatz"
 require "../iterator"
 require "../math"
 
-BigFloat.default_precision = 1024
+BigFloat.default_precision = 128
 
 enum Option
   RunOnce         # 0
@@ -67,10 +67,10 @@ when Option::RunLoopAnalysis
     puts "Running loop analysis for #{kcycles} k-cycles(s) and #{p} permutation(s)"
     Math.genComplexInput(kcycles, p).each do |i|
       temp = Math.iter(i)
-      if (Math.isWholeNumber?(temp) && temp > 0)
-        puts i
-        puts temp
-      end
+      # if (Math.isWholeNumber?(temp) && temp > 0)
+      puts i
+      puts temp
+      # end
     end
   end
 when Option::RunSpecial

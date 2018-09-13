@@ -35,6 +35,8 @@ Alternatively you can execute each action individually:
 
 `./bin/main -o RunSpecial -v 50`
 
+`./bin/main -o RunDiff -v 50`
+
 `./bin/main --help `
 
 ### Line of thought
