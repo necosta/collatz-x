@@ -5,8 +5,13 @@ describe Analysis do
   it "should calculate final equations" do
     Analysis.getSumMember(1, 1, 0, 0).should eq(-1.0)
     Analysis.getSumMember(1, 4, 0, 0).should eq(13.0)
-    Analysis.getFinal(-1.0, 1, 2).should eq(4.0)
-    Analysis.getFinal(-1.0, 1, 4).should eq(16.0/13.0)
+    Analysis.getTotal(-1.0, 1, 2).should eq(4.0)
+
+    actual = Analysis.getTotal(-1.0, 1, 4).to_f
+    expected = 16.0/13.0
+    (actual - expected).abs.should be < (1e-10)
+
+    Analysis.getTotal(BigInt.new("123456789123456789123456789"), 50, 20).to_f.should eq(180323428.023709719368)
   end
 
   it "should calculate A function" do

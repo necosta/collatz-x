@@ -6,7 +6,9 @@ describe Math do
     x = [1]; y = [2]; z = [1]; w = [0]
     Math.calc(x, y, z, w).should eq (4.0)
     x = [1, 1]; y = [3, 2]; z = [1, 1]; w = [2, 0]
-    Math.calc(x, y, z, w).should eq (1.6521739130434783)
+    Math.calc(x, y, z, w).to_f.should eq (1.652173913043478)
+    x = [21, 1]; y = [23, 2]; z = [21, 1]; w = [22, 0]
+    Math.calc(x, y, z, w).to_f.should eq (-2.002809805230198)
   end
 
   it "should pivot transform input" do

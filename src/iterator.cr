@@ -19,7 +19,7 @@ module Math
     # numSign = num > 0 ? "+" : "-"
     # demSign = dem > 0 ? "+" : "-"
     # puts "Num: #{numSign}#{numF} || Dem: #{demSign}#{demF}"
-    Analysis.getFinal(member, x.sum, y.sum)
+    Analysis.getTotal(member, x.sum, y.sum)
   end
 
   def iter(input : Array(Array(Int32)))
