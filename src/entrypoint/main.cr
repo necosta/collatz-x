@@ -46,7 +46,8 @@ when Option::RunOnce
   puts "Running Collatz for value #{value}"
   sysout = Collatz.runWithPrint(value)
   sysout.each do |o|
-    puts o
+    puts "Flow: #{o[1]}"
+    puts "Number: #{o[0]}"
   end
 when Option::RunUpwards
   puts "Running Collatz starting at value #{value}"
@@ -86,7 +87,7 @@ when Option::RunDiff
   valueArray2 = valueArray.clone
   valueArray2.shift # Removes first value
   valueArray.pop    # Removes last value
-  sysout = valueArray.zip(valueArray2).map { |a, b| (b - a) / BigFloat.new(18.0) }
+  sysout = valueArray.zip(valueArray2).map { |a, b| (b[0] - a[0]) / BigFloat.new(18.0) }
   sysout.each do |o|
     puts o
   end
