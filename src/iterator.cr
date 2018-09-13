@@ -55,6 +55,15 @@ module Math
 
   def genComplexInput(maxCycles, permutations)
     flows = genInput(maxCycles)
-    flows.permutations(permutations)
+    ary = [] of Array(Array(Int32))
+    flows.each_permutation(permutations) do |a|
+      x_sum = a.map { |a| a[0] }.sum
+      y_sum = a.map { |a| a[1] }.sum
+      threshold = Math.log(2**(y_sum - x_sum)) / Math.log(1.5)
+      if (x_sum < threshold)
+        ary << a
+      end
+    end
+    ary
   end
 end

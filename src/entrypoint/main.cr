@@ -65,12 +65,14 @@ when Option::RunLoopAnalysis
   permutations = 20
   (1..permutations).each do |p|
     puts "Running loop analysis for #{kcycles} k-cycles(s) and #{p} permutation(s)"
-    Math.genComplexInput(kcycles, p).each do |i|
+    iterations = Math.genComplexInput(kcycles, p)
+    puts "Number of permutations: #{iterations.size}"
+    iterations.each do |i|
       temp = Math.iter(i)
-      # if (Math.isWholeNumber?(temp) && temp > 0)
-      puts i
-      puts temp
-      # end
+      if (Math.isWholeNumber?(temp) && temp > 0)
+        puts i
+        puts temp
+      end
     end
   end
 when Option::RunSpecial

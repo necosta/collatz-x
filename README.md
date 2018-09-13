@@ -31,7 +31,7 @@ Alternatively you can execute each action individually:
 
 `./bin/main -o RunUpwards -v 400`
 
-`./bin/main -o RunLoopAnalysis -v 10`
+`./bin/main -o RunLoopAnalysis -v 1`
 
 `./bin/main -o RunSpecial -v 50`
 

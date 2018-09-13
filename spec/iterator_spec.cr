@@ -30,6 +30,6 @@ describe Math do
     Math.genComplexInput(-1, 2).should eq ([[[1, 2, 1, 0], [1, 4, 1, 0]], [[1, 4, 1, 0], [1, 2, 1, 0]]])
     Math.genComplexInput(-1, 2).size.should eq(2)
     Math.genComplexInput(0, 2).size.should eq(56)
-    Math.genComplexInput(1, 2).size.should eq(182)
+    Math.genComplexInput(1, 2).size.should eq(178)
   end
 end
