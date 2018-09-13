@@ -113,6 +113,6 @@ Let's organize all positive integers by:
 |:-----:|:-----------:|:----:|
 |&#946;<sub>1</sub>|A->H         |3/16   |
 |&#946;<sub>2</sub>|A->B->C->J   |3/256  |
-|&#946;<sub>3</sub>,&#946;<sub>4</sub>|A->B->C->D->K<sub>x</sub>->E->F&#124;L |0.00390625|
-|&#946;<sub>5</sub>,&#946;<sub>6</sub>|A->B->I->K<sub>x</sub>->E->F&#124;L    |0.046875|
-|&#946;<sub>7</sub>,&#946;<sub>8</sub>|G->K<sub>x</sub>->E->F&#124;L  |0.75|
+|&#946;<sub>3</sub>,&#946;<sub>4</sub>|A->B->C->D->K<sub>x</sub>->E->F&#124;L |1/256|
+|&#946;<sub>5</sub>,&#946;<sub>6</sub>|A->B->I->K<sub>x</sub>->E->F&#124;L    |3/64|
+|&#946;<sub>7</sub>,&#946;<sub>8</sub>|G->K<sub>x</sub>->E->F&#124;L  |3/4|

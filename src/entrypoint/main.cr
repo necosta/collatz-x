@@ -9,6 +9,7 @@ enum Option
   RunUpwards      # 1
   RunLoopAnalysis # 2
   RunSpecial      # 3
+  RunDiff         # 4
 end
 
 option = Option::RunOnce
@@ -21,12 +22,14 @@ OptionParser.parse! do |parser|
       RunUpwards - Apply algorithm infinitely staring from an initial value
       RunLoopAnalysis - Check for possible solutions for 'loop' equation
       RunSpecial - Explores long 7EVEN-8ODD-7EVEN iterations
+      RunDiff - Get increments from each iteration
     ") { |opt| option = Option.parse(opt) }
   parser.on("-v value", "--value value", "Set a value:
-    RunOnce - Single value
+    RunOnce - Starting single value
     RunUpwards - Starting iteration value
     RunLoopAnalysis - Number of kcycles
     RunSpecial - Number of 'long' iterations
+    RunDiff - Set starting value
     ") { |v| value = v.to_i }
   parser.on("-h", "--help", "Show this help") { puts parser }
   parser.invalid_option do |flag|
@@ -73,5 +76,15 @@ when Option::RunSpecial
     input = (BigInt.new(2)**p - 1)*18 + 16
     puts "Running Collatz for special value #{input}"
     puts Collatz.runWithSpecialIterationsCount(input)
+  end
+when Option::RunDiff
+  puts "Running Collatz diff for value #{value}"
+  valueArray = Collatz.runWithPrint(value.to_u64)
+  valueArray2 = valueArray.clone
+  valueArray2.shift # Removes first value
+  valueArray.pop    # Removes last value
+  sysout = valueArray.zip(valueArray2).map { |a, b| (b.to_i64 - a) / 18.0 }
+  sysout.each do |o|
+    puts o
   end
 end
