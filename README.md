@@ -1,4 +1,4 @@
-# math-x
+# collatz-x
 Playground project built in [Crystal](https://crystal-lang.org/)
 aiming to better understand the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture)
 nuances and patterns
@@ -8,34 +8,45 @@ Start with any positive integer n and recursively apply the following logic:
 * If the number is even, divide it by two (n / 2)
 * If the number is odd, triple it and add one (n * 3 + 1)
 
-The conjecture states that, no matter what selected value of n, the sequence will always reach 1
+The conjecture states that, no matter what is the selected value of n, the sequence will always reach 1
 
 ### Pre-requisites
 * Download [Crystal](https://crystal-lang.org/docs/installation/on_debian_and_ubuntu.html)
   * version: 0.26+
 
 ### Run it
-Leveraging Makefile it's possible to format, test, compile and execute code with
-`make all`
+It's possible to format, test, compile and execute code with `make all`
 
 Alternatively you can execute each action individually:
-* Clean - Removes any binaries: `make clean`
-* Format - Forces correct formatting: `make format`
+* Clean - Removes all binaries: `make clean`
+* Format - Enforces correct formatting: `make format`
 * Test - Runs all tests: `make test`
 * Build - Compiles code: `make build`
-* Run - Runs code: `make run`
+* Run - Runs code (default option): `make run`
 
-**Execute:**
+**Options:**
+
+* Applies Collatz algorithm to a single number:
 
 `./bin/main -o RunOnce -v 300`
 
+* Applies Collatz algorithm recursively starting at a given number:
+
 `./bin/main -o RunUpwards -v 400`
+
+* Checks for &#946;<sup>k</sup> = n solutions for a given number of k-cycles:
 
 `./bin/main -o RunLoopAnalysis -v 1`
 
+* Explores long k-iterations:
+
 `./bin/main -o RunSpecial -v 50`
 
+* Applies Collatz algorithm to a single number returning delta:
+
 `./bin/main -o RunDiff -v 50`
+
+* Shows help:
 
 `./bin/main --help `
 

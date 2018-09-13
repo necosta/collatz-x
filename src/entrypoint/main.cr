@@ -61,14 +61,13 @@ when Option::RunUpwards
   end
 when Option::RunLoopAnalysis
   kcycles = value
-  # Will iterate through permutations but will never finish given the high number of permutations
-  permutations = 20
+  permutations = 10
   (1..permutations).each do |p|
     puts "Running loop analysis for #{kcycles} k-cycles(s) and #{p} permutation(s)"
-    iterations = Math.genComplexInput(kcycles, p)
+    iterations = Iterator.genAggFlows(kcycles, p)
     puts "Number of permutations: #{iterations.size}"
     iterations.each do |i|
-      temp = Math.iter(i)
+      temp = Iterator.start(i)
       if (Math.isWholeNumber?(temp) && temp > 0)
         puts i
         puts temp

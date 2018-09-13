@@ -1,9 +1,19 @@
 require "./analysis"
 require "./factorization"
 
-module Math
+module Iterator
+  extend self
+
+  def start(input : Array(Array(Int32)))
+    x = pivotInput(input, 0)
+    y = pivotInput(input, 1)
+    z = pivotInput(input, 2)
+    w = pivotInput(input, 3)
+    Iterator.calc(x, y, z, w)
+  end
+
   def calc(x, y, z, w)
-    member = 0.0
+    member = BigFloat.new(0.0)
     (1..x.size).each do |it|
       a = Analysis.getA(x, it)
       b = Analysis.getB(z, it)
@@ -22,14 +32,6 @@ module Math
     Analysis.getTotal(member, x.sum, y.sum)
   end
 
-  def iter(input : Array(Array(Int32)))
-    x = pivotInput(input, 0)
-    y = pivotInput(input, 1)
-    z = pivotInput(input, 2)
-    w = pivotInput(input, 3)
-    Math.calc(x, y, z, w)
-  end
-
   def pivotInput(input : Array(Array(Int32)), pos)
     out = Array(Int32).new
     input.each do |array|
@@ -38,7 +40,7 @@ module Math
     out
   end
 
-  def genInput(maxCycles)
+  def genFlows(maxCycles)
     flows = Array(Array(Int32)).new
     flows << [1, 2, 1, 0]
     flows << [1, 4, 1, 0]
@@ -53,10 +55,9 @@ module Math
     flows
   end
 
-  def genComplexInput(maxCycles, permutations)
-    flows = genInput(maxCycles)
+  def genAggFlows(maxCycles, permutations)
     ary = [] of Array(Array(Int32))
-    flows.each_permutation(permutations) do |a|
+    genFlows(maxCycles).each_permutation(permutations) do |a|
       x_sum = a.map { |a| a[0] }.sum
       y_sum = a.map { |a| a[1] }.sum
       threshold = Math.log(2**(y_sum - x_sum)) / Math.log(1.5)
