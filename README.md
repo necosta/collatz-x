@@ -26,25 +26,21 @@ Alternatively you can execute each action individually:
 
 **Options:**
 
-* Applies Collatz algorithm to a single number:
+* Returns Collatz sequence to a single number:
 
-`./bin/main -o RunOnce -v 300`
+`./bin/collatz -o RunOnce -v 1634`
 
 * Applies Collatz algorithm recursively starting at a given number:
 
-`./bin/main -o RunUpwards -v 400`
+`./bin/collatz -o RunUpwards -v 1634`
 
-* Checks for &#946;<sup>k</sup> = n solutions for a given number of k-cycles:
+* Checks for &#946;<sup>k</sup> = n solutions for a given number of permutations:
 
-`./bin/main -o RunLoopAnalysis -v 1`
+`./bin/collatz -o RunLoopAnalysis -v 1`
 
-* Explores long k-iterations:
+* Returns Collatz sequence for long k-iterations values:
 
-`./bin/main -o RunSpecial -v 50`
-
-* Applies Collatz algorithm to a single number returning delta:
-
-`./bin/main -o RunDiff -v 50`
+`./bin/collatz -o RunSpecial -v 25`
 
 * Shows help:
 
@@ -121,6 +117,7 @@ Let's organize all positive integers by:
 
 1. &#946;<sup>k</sup> = n has no solutions for any positive even integer n and n &#8801; 4 (mod 18) (not proved)
 
+&#946;<sup>i</sup> > &#946;<sup>i+1</sup> => (see limits.cr)
 
 | Id    | Seq         | &#946;<sup>i+1</sup> / &#946;<sup>i</sup> |
 |:-----:|:-----------:|:----:|
@@ -129,3 +126,5 @@ Let's organize all positive integers by:
 |&#946;<sub>3</sub>,&#946;<sub>4</sub>|A->B->C->D->K<sub>x</sub>->E->F&#124;L |1/256|
 |&#946;<sub>5</sub>,&#946;<sub>6</sub>|A->B->I->K<sub>x</sub>->E->F&#124;L    |3/64|
 |&#946;<sub>7</sub>,&#946;<sub>8</sub>|G->K<sub>x</sub>->E->F&#124;L  |3/4|
+
+&#946;<sup>k</sup> = n => (see iterator.cr)

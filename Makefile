@@ -13,7 +13,7 @@ test:
 
 build:
 	mkdir -p bin
-	$(CRYSTAL) build src/entrypoint/main.cr -o bin/main
+	$(CRYSTAL) build src/entrypoint/collatz.cr -o bin/collatz
 
 run:
-	bin/main
+	bin/collatz

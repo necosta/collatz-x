@@ -4,14 +4,19 @@ module Limits
   extend self
 
   def limit
-    3.0/2**4 + 3.0/2**8 + sum(0, 12) + sum(1, 10) + sum(1, 6)
+    lim1 = 3.0/2**4
+    lim2 = 3.0/2**8
+    lim34 = sum(0, 12)
+    lim56 = sum(1, 10)
+    lim78 = sum(1, 6)
+    lim1 + lim2 + lim34 + lim56 + lim78
   end
 
   def sum(m, l)
     out = 0.0
     iterations = 100
     (0..iterations).each do |n|
-      out = out + memberInternal(n, m, l)
+      out += memberInternal(n, m, l)
     end
     out
   end

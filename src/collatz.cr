@@ -19,61 +19,49 @@ module Collatz
   end
 
   def runWithPrint(n)
-    sysout = Array({BigInt, String}).new
-    str = ""
-    tmp = n
+    out = Array({BigInt, String}).new
+    flowSeq = ""
+    prev = n
     while n = Collatz.runOnce(n)
       digitsSum = Math.digitsSum(n)
-      str = getFlowId(digitsSum, n, tmp, str)
-      # Only display on 4sum even number
+      flowSeq = getFlowSeq(digitsSum, n, prev, flowSeq)
       if (n % 2 == 0 && digitsSum == 4)
-        sysout << {n, str}
-        str = ""
+        out << {n, flowSeq}
+        flowSeq = ""
       end
-      tmp = n
+      prev = n
       break if n == 1
     end
-    sysout
+    out
   end
 
-  def runWithSpecialIterationsCount(n)
-    counter = 0
-    while n = Collatz.runOnce(n)
-      if (n % 2 == 1 && Math.digitsSum(n) == 8)
-        counter = counter + 1
-      end
-      break if n == 1
-    end
-    counter
-  end
-
-  private def getFlowId(digitsSum, n, tmp, str)
+  private def getFlowSeq(digitsSum, n, tmp, str)
     digitsSumPrev = Math.digitsSum(tmp)
     case
     when n % 2 == 0 && digitsSum == 2 && digitsSumPrev == 4
-      str = str + "A"
+      str += "A"
     when n % 2 == 1 && digitsSum == 2 && digitsSumPrev == 4
-      str = str + "G"
+      str += "G"
     when n % 2 == 0 && digitsSum == 1 && digitsSumPrev == 2
-      str = str + "B"
+      str += "B"
     when n % 2 == 1 && digitsSum == 1 && digitsSumPrev == 2
-      str = str + "H"
+      str += "H"
     when n % 2 == 0 && digitsSum == 5 && digitsSumPrev == 1
-      str = str + "C"
+      str += "C"
     when n % 2 == 1 && digitsSum == 5 && digitsSumPrev == 1
-      str = str + "I"
+      str += "I"
     when n % 2 == 0 && digitsSum == 7 && digitsSumPrev == 5
-      str = str + "D"
+      str += "D"
     when n % 2 == 1 && digitsSum == 7 && digitsSumPrev == 5
-      str = str + "J"
+      str += "J"
     when n % 2 == 0 && digitsSum == 8 && digitsSumPrev == 7
-      str = str + "E"
+      str += "E"
     when n % 2 == 1 && digitsSum == 8 && digitsSumPrev == 7
-      str = str + "K"
+      str += "K"
     when n % 2 == 0 && digitsSum == 4 && digitsSumPrev == 8
-      str = str + "F"
+      str += "F"
     when n % 2 == 1 && digitsSum == 4 && digitsSumPrev == 8
-      str = str + "L"
+      str += "L"
     end
     str
   end
