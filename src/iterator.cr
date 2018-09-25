@@ -4,7 +4,23 @@ require "./factorization"
 module Iterator
   extend self
 
-  def start(input : Array(Array(Int32)))
+  def iterate(maxCycles, permutations)
+    genFlows(maxCycles).each_permutation(permutations) do |i|
+      x_sum = i.map { |i| i[0] }.sum
+      y_sum = i.map { |i| i[1] }.sum
+      threshold = Math.log(2**(y_sum - x_sum)) / Math.log(1.5)
+      if (x_sum < threshold)
+        puts i
+        output = Iterator.startEach(i)
+        if (Math.isWholeNumber?(output) && output != 0)
+          puts output
+          return
+        end
+      end
+    end
+  end
+
+  def startEach(input : Array(Array(Int32)))
     x = pivotInput(input, 0)
     y = pivotInput(input, 1)
     z = pivotInput(input, 2)
@@ -51,18 +67,5 @@ module Iterator
       flows << [x + 2, x + 3, x + 1, x + 2]
     end
     flows
-  end
-
-  def genAggFlows(maxCycles, permutations)
-    ary = [] of Array(Array(Int32))
-    genFlows(maxCycles).each_permutation(permutations) do |a|
-      x_sum = a.map { |a| a[0] }.sum
-      y_sum = a.map { |a| a[1] }.sum
-      threshold = Math.log(2**(y_sum - x_sum)) / Math.log(1.5)
-      if (x_sum < threshold)
-        ary << a
-      end
-    end
-    ary
   end
 end

@@ -66,18 +66,7 @@ when Option::RunLoopAnalysis
   permutations = value
   puts "Running loop analysis for #{kcycles} k-cycles(s) and #{permutations} permutation(s)"
   # ToDo: Add permutations with repeated values
-  iterations = Iterator.genAggFlows(kcycles, permutations)
-  iter_size = iterations.size
-  raise ArgumentError.new("Permutations exceed iterations") if permutations > iter_size
-  puts "Number of permutations: #{iter_size}"
-  iterations.each do |i|
-    output = Iterator.start(i)
-    if (Math.isWholeNumber?(output) && output != 0)
-      puts i
-      puts output
-    end
-  end
-  puts "Finished finding solutions for #{iter_size} permutations"
+  Iterator.iterate(kcycles, permutations)
 when Option::RunSpecial
   exp = value
   input = (BigInt.new(2)**exp - 1)*18 + 16

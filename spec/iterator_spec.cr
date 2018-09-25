@@ -26,11 +26,4 @@ describe Iterator do
     Iterator.genFlows(0).size.should eq (8)
     Iterator.genFlows(1).size.should eq (14)
   end
-
-  it "should generate aggregated flows for iteration" do
-    Iterator.genAggFlows(-1, 2).should eq ([[[1, 2, 1, 0], [1, 4, 1, 0]], [[1, 4, 1, 0], [1, 2, 1, 0]]])
-    Iterator.genAggFlows(-1, 2).size.should eq(2)
-    Iterator.genAggFlows(0, 2).size.should eq(56)
-    Iterator.genAggFlows(1, 2).size.should eq(178)
-  end
 end
