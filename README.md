@@ -113,11 +113,14 @@ Let's organize all positive integers by:
 
 #### How to prove conjecture:
 
-1. &#946;<sup>i</sup> > &#946;<sup>i+1</sup> (proved)
+1. &#946;<sup>i</sup> > &#946;<sup>i+1</sup> 
+(...all possible flows will decrease over time...) (proved)
 
-1. &#946;<sup>k</sup> = n has no solutions for any positive even integer n and n &#8801; 4 (mod 18) (not proved)
+1. &#946;<sup>k</sup> = n
+(...no integer n solution, with n > 4 
+and n &#8801; 4 (mod 18)...) (not proved)
 
-&#946;<sup>i</sup> > &#946;<sup>i+1</sup> => (see limits.cr)
+&#946;<sup>i</sup> > &#946;<sup>i+1</sup> => (see *limits.cr*)
 
 | Id    | Seq         | &#946;<sup>i+1</sup> / &#946;<sup>i</sup> |
 |:-----:|:-----------:|:----:|
@@ -127,4 +130,10 @@ Let's organize all positive integers by:
 |&#946;<sub>5</sub>,&#946;<sub>6</sub>|A->B->I->K<sub>x</sub>->E->F&#124;L    |3/64|
 |&#946;<sub>7</sub>,&#946;<sub>8</sub>|G->K<sub>x</sub>->E->F&#124;L  |3/4|
 
-&#946;<sup>k</sup> = n => (see iterator.cr)
+&#946;<sup>k</sup> = n => (see *iterator.cr*)
+
+Number of permutations:
+
+```P(n, r) = n! / (n - r)!```
+
+(...n objects taken r at a time...)

@@ -13,23 +13,21 @@ module Iterator
   end
 
   def calc(x, y, z, w)
-    member = BigFloat.new(0.0)
+    num = BigFloat.new(0.0)
     (1..x.size).each do |it|
       a = Analysis.getA(x, it)
       b = Analysis.getB(z, it)
       c = Analysis.getC(x, it)
       d = Analysis.getD(y, w, it)
-      member = member + Analysis.getSumMember(a, b, c, d)
+      member = BigInt.new(2)**y.sum * Analysis.getSumMember(a, b, c, d)
+      num += member
     end
+    dem = BigInt.new(3)**x.sum - BigInt.new(2)**y.sum
     # Exploratory
-    # num = (1.0 * 2**y.sum * member)
-    # dem = (3**x.sum - 2**y.sum)
     # numF = Math.factorize(num.abs)
     # demF = Math.factorize(dem.abs)
-    # numSign = num > 0 ? "+" : "-"
-    # demSign = dem > 0 ? "+" : "-"
-    # puts "Num: #{numSign}#{numF} || Dem: #{demSign}#{demF}"
-    Analysis.getTotal(member, x.sum, y.sum)
+    # puts "Num: #{num} || Dem: #{dem}"
+    num / dem
   end
 
   def pivotInput(input : Array(Array(Int32)), pos)

@@ -1,6 +1,6 @@
 CRYSTAL=crystal
 
-all: format test build run
+all: format test build
 
 clean:
 	rm -rf bin

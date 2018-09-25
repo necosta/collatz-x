@@ -1,12 +1,6 @@
 module Analysis
   extend self
 
-  def getTotal(sum, exp3, exp2)
-    dem1 = BigFloat.new(3)**exp3
-    dem2 = BigInt.new(2)**exp2
-    sum / (dem1 / dem2 - 1.0)
-  end
-
   def getSumMember(a, b, c, d)
     num = (BigInt.new(2)**b * BigInt.new(3)**c) - BigInt.new(3)**a
     dem = BigFloat.new(2)**d
