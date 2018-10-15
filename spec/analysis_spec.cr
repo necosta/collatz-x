@@ -2,6 +2,12 @@ require "./spec_helper"
 require "../src/analysis"
 
 describe Analysis do
+  it "should calculate sum function" do
+    Analysis.getSumMember(0, 1, 0, 1).should eq(0.5)
+    Analysis.getSumMember(1, 1, 1, 1).should eq(1.5)
+    Analysis.getSumMember(2, 0, 1, 3).should eq(-0.75)
+  end
+
   it "should calculate A function" do
     input = [4, 6, 7]
     Analysis.getA(input, 1).should eq(17)

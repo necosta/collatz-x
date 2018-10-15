@@ -4,8 +4,8 @@ module Limits
   extend self
 
   def limit
-    lim1 = 3.0/2**4
-    lim2 = 3.0/2**8
+    lim1 = 3.0/2**4 # P(X) * Formula -> 1/4 * 3/4
+    lim2 = 3.0/2**8 # P(X) * Formula -> 1/16 * 3/16
     lim34 = sum(0, 12)
     lim56 = sum(1, 10)
     lim78 = sum(1, 6)
@@ -13,7 +13,7 @@ module Limits
   end
 
   def sum(m, l)
-    out = 0.0
+    out = BigFloat.new(0)
     iterations = 100
     (0..iterations).each do |n|
       out += memberInternal(n, m, l)

@@ -11,7 +11,7 @@ module Iterator
       threshold = Math.log(2**(y_sum - x_sum)) / Math.log(1.5)
       if (x_sum < threshold)
         puts i
-        output = Iterator.startEach(i)
+        output = startEach(i)
         if (Math.isNaturalNumber?(output) && output != 0)
           puts output
           return
@@ -20,16 +20,16 @@ module Iterator
     end
   end
 
-  def startEach(input : Array(Array(Int32)))
+  private def startEach(input : Array(Array(Int32)))
     x = pivotInput(input, 0)
     y = pivotInput(input, 1)
     z = pivotInput(input, 2)
     w = pivotInput(input, 3)
-    Iterator.calc(x, y, z, w)
+    calc(x, y, z, w)
   end
 
   def calc(x, y, z, w)
-    num = BigFloat.new(0.0)
+    num = BigFloat.new(0)
     (1..x.size).each do |it|
       a = Analysis.getA(x, it)
       b = Analysis.getB(z, it)
