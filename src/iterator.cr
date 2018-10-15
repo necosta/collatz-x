@@ -12,7 +12,7 @@ module Iterator
       if (x_sum < threshold)
         puts i
         output = Iterator.startEach(i)
-        if (Math.isWholeNumber?(output) && output != 0)
+        if (Math.isNaturalNumber?(output) && output != 0)
           puts output
           return
         end
