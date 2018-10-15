@@ -140,8 +140,19 @@ Let's organize all positive integers by:
 
 &#946;<sup>k</sup> = n => (see *iterator.cr*)
 
-Number of permutations:
+**One known solution: n = 4 --> (3/4) * 4 + 1 = 4**
 
-```P(n, r) = n! / (n - r)!```
+Number of permutations with repetition:
 
-(...n objects taken r at a time...)
+PR(n, r) = n<sup>r</sup> (...n objects taken r at a time...)
+
+Example:
+* 128 flows (2+6*21) in 1 iteration = 128<sup>1</sup> = 128
+  * 34 positive (26.56%), no new solutions
+* 128 flows (2+6*21) in 2 iterations = 128<sup>2</sup> = 16_384
+  * 2_638 positive (16.1%), no new solutions
+* 128 flows (2+6*21) in 3 iterations = 128<sup>3</sup> = 2_097_152
+  * 227563 positive (10.85%), no new solutions
+* 128 flows (2+6*21) in 4 iterations = 128<sup>4</sup> = 268_435_456
+  * to be confirmed
+* ...

@@ -33,7 +33,7 @@ OptionParser.parse! do |parser|
     raise ArgumentError.new("Value must be positive") if v.to_i < 0
     value = BigInt.new(v)
   end
-  parser.on("-h", "--help", "Show this help") { puts parser }
+  parser.on("-h", "--help", "Show this help") { puts parser; exit(0) }
   parser.invalid_option do |flag|
     STDERR.puts "ERROR: #{flag} is not a valid option"
     STDERR.puts parser
@@ -62,10 +62,9 @@ when Option::RunUpwards
     iter += 1
   end
 when Option::RunLoopAnalysis
-  kcycles = 15 # ToDo: Soft-code this value...
+  kcycles = 20 # 2 + (20+1)*6 = 128 flows
   permutations = value
   puts "Running loop analysis for #{kcycles} k-cycles(s) and #{permutations} permutation(s)"
-  # ToDo: Add permutations with repeated values
   Iterator.iterate(kcycles, permutations)
 when Option::RunSpecial
   exp = value

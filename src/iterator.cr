@@ -5,19 +5,22 @@ module Iterator
   extend self
 
   def iterate(maxCycles, permutations)
-    genFlows(maxCycles).each_permutation(permutations) do |i|
+    counter = 0
+    genFlows(maxCycles).each_repeated_permutation(permutations) do |i|
       x_sum = i.map { |i| i[0] }.sum
       y_sum = i.map { |i| i[1] }.sum
       threshold = Math.log(2**(y_sum - x_sum)) / Math.log(1.5)
       if (x_sum < threshold)
+        counter += 1
         puts i
         output = startEach(i)
-        if (Math.isNaturalNumber?(output) && output != 0)
+        if (output > 0 && Math.isNaturalNumber?(output) && output != 4)
           puts output
           return
         end
       end
     end
+    puts "#{counter} positive values"
   end
 
   private def startEach(input : Array(Array(Int32)))
