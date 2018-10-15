@@ -1,7 +1,7 @@
 # collatz-x
-Playground project built in [Crystal](https://crystal-lang.org/)
-aiming to better understand the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture)
-nuances and patterns
+Exploratory project built in [Crystal](https://crystal-lang.org/)
+
+Aims to better understand the nuances and patterns of the [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture)
 
 ### The Collatz conjecture
 Start with any positive integer n and recursively apply the following logic:
@@ -10,21 +10,21 @@ Start with any positive integer n and recursively apply the following logic:
 
 The conjecture states that, no matter what is the selected value of n, the sequence will always reach 1
 
-### Pre-requisites
+### Prerequisites
 * Download [Crystal](https://crystal-lang.org/docs/installation/on_debian_and_ubuntu.html)
   * version: 0.26+
 
 ### Run it
-It's possible to format, test, compile and execute code with `make all`
+It's possible to format, test and compile code with `make all`
 
 Alternatively you can execute each action individually:
 * Clean - Removes all binaries: `make clean`
 * Format - Enforces correct formatting: `make format`
 * Test - Runs all tests: `make test`
 * Build - Compiles code: `make build`
-* Run - Runs code (default option): `make run`
+* Run - Runs code (with default option): `make run`
 
-**Options:**
+**Examples:**
 
 * Returns Collatz sequence to a single number:
 
@@ -44,7 +44,7 @@ Alternatively you can execute each action individually:
 
 * Shows help:
 
-`./bin/main --help `
+`./bin/collatz --help`
 
 ### Line of thought
 
@@ -74,15 +74,15 @@ Let's organize all positive integers by:
 ---
 
 ##### Flow diagram
-* 9 (digitsSum) * 2 (parity states) = 18 nodes
-* 9 (digitsSum) * 3 (parity transitions) = 27 edges
+* 9 (digits sum comb) * 2 (parity states) = 18 nodes
+* 9 (digits sum comb) * 3 (distinct parity transitions) = 27 edges
 
 ![Flow diagram](img/flow.jpeg "Flow diagram")
 
 **Singularities:**
-* (&#945;) M -> N -> M  (n / 2 * n / 2) (lim -> 6)
-* (&#945;) O -> O (n / 2) (lim -> 18)
-* (&#946;) K -> K (1.5 * n + 1) (lim -> &#8734;) !!!
+* (&#945;) M -> N -> M  (n / 2 * n / 2) (decreases)
+* (&#945;) O -> O (n / 2) (decreases)
+* (&#946;) K -> K ((3/2) * n + 1) (increases !!!)
 
 **&#945; flows:**
 
@@ -105,20 +105,28 @@ Let's organize all positive integers by:
 
 ## &#946;<sup>1</sup> = (3<sup>x</sup> / 2<sup>y</sup>) * n + (3<sup>x</sup> - 2<sup>z</sup>) / 2<sup>w</sup>
 
+* x &#1013; {1,x,x+1,x+2}
+* y &#1013; {2,4,x,x+3,x+5,x+6}
+* z &#1013; {1,x,x+1}
+* w &#1013; {0,x+1,x+2}
+
 **k iterations (generalized):**
 
 ## &#946;<sup>k</sup> = (3<sup>&#931;x<sub>k</sub></sup> / 2<sup>&#931;y<sub>k</sub></sup>) * n + &#931; ((3<sup>a</sup> - 2<sup>b</sup>*3<sup>c</sup>) / 2<sup>d</sup>)
 
+* a,b,c,d (see *analysis.cr*)
+
 ---
 
-#### How to prove conjecture:
+#### How to prove/disprove conjecture:
 
-1. &#946;<sup>i</sup> > &#946;<sup>i+1</sup> 
-(...all possible flows will decrease over time...) (proved)
+1. &#946;<sup>i</sup> > &#946;<sup>i+1</sup>
+ * Will all possible flows decrease over time?
+    * **yes, proved**
 
 1. &#946;<sup>k</sup> = n
-(...no integer n solution, with n > 4 
-and n &#8801; 4 (mod 18)...) (not proved)
+ * Are there no solutions to the above equation, with n > 4 and n integer and n &#8801; 4 (mod 18) ?
+    * **to be proven...**
 
 &#946;<sup>i</sup> > &#946;<sup>i+1</sup> => (see *limits.cr*)
 
