@@ -146,14 +146,14 @@ Number of permutations with repetition:
 
 PR(n, r) = n<sup>r</sup> (...n objects taken r at a time...)
 
-Example:
+Runs:
 * 80 flows (2+6*(12+1)) in 1 iteration = 80<sup>1</sup> = 80
-  * 34 positive, no new solutions
+  * 34 positive, 1 solution (n = 4)
 * 152 flows (2+6*(24+1)) in 2 iterations = 152<sup>2</sup> = 23_104
-  * 2_638 positive, no new solutions
+  * 2_638 positive, no solutions
 * 224 flows (2+6*(36+1)) in 3 iterations = 224<sup>3</sup> = 11_239_424
-  * 230_527 positive, no new solutions
+  * 230_527 positive, no solutions
 * 296 flows (2+6*(48+1)) in 4 iterations = 296<sup>4</sup> = 7_676_563_456
-  * 21_092_750 positive, no new solutions
+  * 21_092_750 positive, no solutions
 * 368 flows (2+6*(60+1)) in 5 iterations = 368<sup>5</sup> = 6_748_994_797_568
   * to be confirmed
