@@ -32,15 +32,15 @@ Alternatively you can execute each action individually:
 
 * Applies Collatz algorithm recursively starting at a given number:
 
-`./bin/collatz -o RunUpwards -v 1634`
-
-* Checks for &#946;<sup>k</sup> = n solutions for a given number of permutations:
-
-`./bin/collatz -o RunLoopAnalysis -v 1`
+`./bin/collatz -o RunInf -v 1634`
 
 * Returns Collatz sequence for long k-iterations values:
 
 `./bin/collatz -o RunSpecial -v 25`
+
+* Checks for &#946;<sup>k</sup> = n solutions for a given number of permutations:
+
+`./bin/collatz -o CheckSolutions -v 2`
 
 * Shows help:
 
@@ -147,12 +147,13 @@ Number of permutations with repetition:
 PR(n, r) = n<sup>r</sup> (...n objects taken r at a time...)
 
 Example:
-* 128 flows (2+6*21) in 1 iteration = 128<sup>1</sup> = 128
-  * 34 positive (26.56%), no new solutions
-* 128 flows (2+6*21) in 2 iterations = 128<sup>2</sup> = 16_384
-  * 2_638 positive (16.1%), no new solutions
-* 128 flows (2+6*21) in 3 iterations = 128<sup>3</sup> = 2_097_152
-  * 227563 positive (10.85%), no new solutions
-* 128 flows (2+6*21) in 4 iterations = 128<sup>4</sup> = 268_435_456
+* 80 flows (2+6*(12+1)) in 1 iteration = 80<sup>1</sup> = 80
+  * 34 positive, no new solutions
+* 152 flows (2+6*(24+1)) in 2 iterations = 152<sup>2</sup> = 23_104
+  * 2_638 positive, no new solutions
+* 224 flows (2+6*(36+1)) in 3 iterations = 224<sup>3</sup> = 11_239_424
+  * 230_527 positive, no new solutions
+* 296 flows (2+6*(48+1)) in 4 iterations = 296<sup>4</sup> = 7_676_563_456
+  * 21_092_750 positive, no new solutions
+* 368 flows (2+6*(60+1)) in 5 iterations = 368<sup>5</sup> = 6_748_994_797_568
   * to be confirmed
-* ...

@@ -6,10 +6,11 @@ module Iterator
 
   def iterate(maxCycles, permutations)
     counter = 0
+    const = Math.log(1.5)
     genFlows(maxCycles).each_repeated_permutation(permutations) do |i|
       x_sum = i.map { |i| i[0] }.sum
       y_sum = i.map { |i| i[1] }.sum
-      threshold = Math.log(2**(y_sum - x_sum)) / Math.log(1.5)
+      threshold = Math.log(2**(y_sum - x_sum)) / const
       if (x_sum < threshold)
         counter += 1
         puts i
@@ -43,9 +44,9 @@ module Iterator
     end
     dem = BigInt.new(3)**x.sum - BigInt.new(2)**y.sum
     # Exploratory
-    # numF = Math.factorize(num.abs)
-    # demF = Math.factorize(dem.abs)
-    # puts "Num: #{num} || Dem: #{dem}"
+    # numF = Math.factorize(num.abs).reject! { |v| v == 2 }.uniq
+    # demF = Math.factorize(dem.abs).uniq
+    # puts "Num: #{numF} || Dem: #{demF}"
     num / dem
   end
 

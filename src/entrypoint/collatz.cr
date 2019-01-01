@@ -7,10 +7,10 @@ require "../math"
 BigFloat.default_precision = 128
 
 enum Option
-  RunOnce         # 0
-  RunUpwards      # 1
-  RunLoopAnalysis # 2
-  RunSpecial      # 3
+  RunOnce        # 0
+  RunInf         # 1
+  RunSpecial     # 2
+  CheckSolutions # 3
 end
 
 option = Option::RunOnce
@@ -20,15 +20,15 @@ OptionParser.parse! do |parser|
   parser.banner = "Usage:"
   parser.on("-o option", "--option option", "Select a running option:
       RunOnce - Applies algorithm to a single value
-      RunUpwards - Applies algorithm infinitely staring from an initial value
-      RunLoopAnalysis - Checks for possible 'loop' solutions
+      RunInf - Applies algorithm infinitely staring from an initial value
       RunSpecial - Applies algorithm to long k-iterations
+      CheckSolutions - Checks for solutions
     ") { |opt| option = Option.parse(opt) }
   parser.on("-v value", "--value value", "Set a value:
     RunOnce - Single value
-    RunUpwards - Starting value
-    RunLoopAnalysis - Number of permutations
+    RunInf - Starting value
     RunSpecial - Number of long k-iterations
+    CheckSolutions - Number of permutations
     ") do |v|
     raise ArgumentError.new("Value must be positive") if v.to_i < 0
     value = BigInt.new(v)
@@ -47,7 +47,7 @@ when Option::RunOnce
   Collatz.runWithPrint(value).each do |o|
     puts "#{o[1]} -> #{o[0]}"
   end
-when Option::RunUpwards
+when Option::RunInf
   puts "Running Collatz algorithm infinitely starting at value #{value}:"
   input = BigInt.new(value)
   iter = 0
@@ -61,11 +61,6 @@ when Option::RunUpwards
     input += 18
     iter += 1
   end
-when Option::RunLoopAnalysis
-  kcycles = 20 # 2 + (20+1)*6 = 128 flows
-  permutations = value
-  puts "Running loop analysis for #{kcycles} k-cycles(s) and #{permutations} permutation(s)"
-  Iterator.iterate(kcycles, permutations)
 when Option::RunSpecial
   exp = value
   input = (BigInt.new(2)**exp - 1)*18 + 16
@@ -78,4 +73,9 @@ when Option::RunSpecial
   out.last(3).each do |o|
     puts "#{o[1]} -> #{o[0]}"
   end
+when Option::CheckSolutions
+  permutations = value
+  kcycles = 12 * permutations # 2 + ((12 * perm)+1)*6
+  puts "Running loop analysis for #{kcycles} k-cycles(s) and #{permutations} permutation(s)"
+  Iterator.iterate(kcycles, permutations)
 end
