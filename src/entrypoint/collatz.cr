@@ -76,6 +76,10 @@ when Option::RunSpecial
 when Option::CheckSolutions
   permutations = value
   kcycles = 12 * permutations # 2 + ((12 * perm)+1)*6
-  puts "Running loop analysis for #{kcycles} k-cycles(s) and #{permutations} permutation(s)"
-  Iterator.iterate(kcycles, permutations)
+  puts "Checking solutions for #{kcycles} k-cycles(s) and #{permutations} permutation(s)"
+  elapsed_time = Time.measure do
+    Iterator.init(kcycles, permutations)
+    Iterator.iterate(kcycles, permutations)
+  end
+  puts "Took #{elapsed_time}"
 end

@@ -114,7 +114,7 @@ Let's organize all positive integers by:
 
 ## &#946;<sup>k</sup> = (3<sup>&#931;x<sub>k</sub></sup> / 2<sup>&#931;y<sub>k</sub></sup>) * n + &#931; ((3<sup>a</sup> - 2<sup>b</sup>*3<sup>c</sup>) / 2<sup>d</sup>)
 
-* a,b,c,d (see *analysis.cr*)
+* a,b,c,d (see *iterator.cr*)
 
 ---
 
